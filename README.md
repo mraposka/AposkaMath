@@ -1,2 +1,2 @@
 # AposkaMath
- A better math class for C#(still developing)
+ A better(its not) math class for C#(still developing)
