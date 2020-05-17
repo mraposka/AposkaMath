@@ -167,7 +167,6 @@ namespace ConsoleApp1
         {
             return Convert.ToDecimal(q);
         }
-        //Newwwwsss
         public static Int64 floor(decimal value)
         {
             if (value >= 0)
@@ -396,6 +395,95 @@ namespace ConsoleApp1
             decimal cose = AposkaMath.cose(angle);
             decimal cot = cose / sine;
             return cot;
+        }
+
+        public static decimal getDigitAfterPoint(decimal num,int digitNum)
+        { 
+            if (num >= 0) {
+                try
+                {
+                string numToStr = num.ToString();
+                string newNumStr = numToStr.Substring(0, digitNum + 2);
+                    num= Convert.ToDecimal(newNumStr);
+                    if (num == 0.999m)
+                    {
+                        return 1m;
+                    }
+                    else if (num == 0.000m)
+                    {
+                        return 0m;
+                    }
+                    else if (num == 1.000m)
+                    {
+                        return 1m;
+                    }
+                    else if (num == 0.499m)
+                    {
+                        return 0.5m;
+                    } 
+                    return Convert.ToDecimal(newNumStr);
+                }
+                catch (Exception)
+                {
+                    return num;
+                } 
+            }
+            else {
+                try
+                {
+                    string numToStr = num.ToString();
+                    string newNumStr = numToStr.Substring(0, digitNum + 3);
+                    num = Convert.ToDecimal(newNumStr);
+                    if (num == -0.999m)
+                    {
+                        return -1m;
+                    }
+                    else if (num == -0.000m)
+                    {
+                        return 0m;
+                    }
+                    else if (num == -1.000m)
+                    {
+                        return -1m;
+                    }
+                    else if (num == -0.499m)
+                    {
+                        return -0.5m;
+                    }
+                    return Convert.ToDecimal(newNumStr);
+                }
+                catch (Exception)
+                {
+                    return num;
+                }
+            }
+            
+        }
+
+        public static decimal arcsin(decimal value)
+        {
+            for(int i = 0; i <= 360;i++)
+            {
+                if(AposkaMath.getDigitAfterPoint(Convert.ToDecimal(AposkaMath.sine(i)), 3) == AposkaMath.getDigitAfterPoint(value,3))
+                {
+                    return i;
+                }
+            }
+            Console.WriteLine("unknown results");
+            return 0;
+        }
+
+        public static decimal arccos(decimal value)
+        {
+            for (int i = 0; i <= 360; i++)
+            {
+                if (AposkaMath.getDigitAfterPoint(Convert.ToDecimal(AposkaMath.cose(i)), 3) == AposkaMath.getDigitAfterPoint(value, 3))
+                {
+                    return i;
+                }
+            }
+            Console.WriteLine("unknown results");
+            return 0;
         }
 
     }
