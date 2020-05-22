@@ -12,6 +12,18 @@ namespace ConsoleApp1
         public const decimal pi = 3.141592653589793238462643383m;
         public const double EPSILON = 1.0e-15;
         public static int bolge = 1;
+        public decimal baseValue = 1.75M;
+        public decimal expValue = 1 / 252M;
+
+        public const int ITERATIONS = 27;
+
+        // power series
+        public static decimal exp(decimal power)
+        {
+            decimal result=Convert.ToDecimal(Math.Pow(Convert.ToDouble(AposkaMath.e), Convert.ToDouble(power)));
+            return result;
+        } 
+
         public static decimal pow(decimal num, int pow)
         {
             decimal res = 1;
@@ -485,6 +497,78 @@ namespace ConsoleApp1
             Console.WriteLine("unknown results");
             return 0;
         }
-
+        public static decimal cosh(decimal angle)
+        {
+            decimal cosh_val = Convert.ToDecimal(Math.Pow(Convert.ToDouble(AposkaMath.e), Convert.ToDouble(angle)) + Math.Pow(Convert.ToDouble(AposkaMath.e), Convert.ToDouble(-1 * angle)));
+            return cosh_val / 2;
+        }
+        public static decimal sinh(decimal angle)
+        {
+            decimal cosh_val = Convert.ToDecimal(Math.Pow(Convert.ToDouble(AposkaMath.e), Convert.ToDouble(angle)) - Math.Pow(Convert.ToDouble(AposkaMath.e), Convert.ToDouble(-1 * angle)));
+            return cosh_val / 2;
+        }
+        public static decimal tanh(decimal angle)
+        {
+            decimal cosh = AposkaMath.cosh(angle);
+            decimal sinh = AposkaMath.sinh(angle);
+            return sinh / cosh;
+        }
+        public static decimal coth(decimal angle)
+        {
+            decimal tanh = AposkaMath.tanh(angle);
+            return 1 / tanh;
+        }
+        public static decimal sech(decimal angle)
+        {
+            decimal cosh = AposkaMath.cosh(angle);
+            return 1 / cosh;
+        }
+        public static decimal csch(decimal angle)
+        {
+            decimal sinh = AposkaMath.sinh(angle);
+            return 1 / sinh;
+        }
+       /* public static decimal atan2(decimal x,decimal y)
+        {
+            if (x > 0)
+            {
+                return Convert.ToDecimal(2 * Math.Atan(Convert.ToDouble(Convert.ToDouble(y) / Math.Sqrt(Convert.ToDouble(x * x + y * y)) + Convert.ToDouble(x))));
+            }
+            else if (x <= 0 && y != 0)
+            {
+                return Convert.ToDecimal(2 * Math.Atan(Math.Sqrt(Convert.ToDouble(x * x + y * y)) - Convert.ToDouble(x) / Convert.ToDouble(Convert.ToDouble(y) )));
+            }
+            else if (x < 0m && y == 0m)
+            {
+                return AposkaMath.pi;
+            }
+            else if(x==0m && y == 0m)
+            {
+                return 0;
+            }
+            return 0m;
+        }*/
+        public static long bigMul(int a,int b)
+        {
+            return Convert.ToInt64(a * b);
+        }
+        public static int remainder(int a,int b)
+        {
+            if (a > b)
+                return a % b;
+            else if (a < b)
+                return b % a;
+            else
+                return 0;
+        }
+        public static int div(int a, int b)
+        {
+            if (a > b)
+                return a / b;
+            else if (a < b)
+                return b / a;
+            else
+                return 1;
+        }
     }
 }
